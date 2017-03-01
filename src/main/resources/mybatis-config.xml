@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC
+        "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="TopicEntity" type="com.cn.bbs.database.model.TopicEntity"/>
+        <typeAlias alias="ReplyEntity" type="com.cn.bbs.database.model.ReplyEntity"/>
+        <typeAlias alias="InformEntity" type="com.cn.bbs.database.model.InformEntity"/>
+        <typeAlias alias="AdminEntity" type="com.cn.bbs.database.model.AdminEntity"/>
+        <typeAlias alias="CategoryEntity" type="com.cn.bbs.database.model.CategoryEntity"/>
+        <typeAlias alias="AnnounceEntity" type="com.cn.bbs.database.model.AnnounceEntity"/>
+        <typeAlias alias="StickyEntity" type="com.cn.bbs.database.model.StickyEntity"/>
+        <typeAlias alias="UserEntity" type="com.cn.bbs.database.model.UserEntity"/>
+    </typeAliases>
+</configuration>

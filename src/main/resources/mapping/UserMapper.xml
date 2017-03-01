@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.bbs.database.dao.UserDao">
+    <insert id="addNewUser" parameterType="UserEntity">
+        INSERT INTO user VALUES (#{userId}, #{nickName},#{iconUrl})
+    </insert>
+
+    <update id="updateUserIcon" parameterType="String">
+        UPDATE user SET iconUrl=#{0} WHERE userId=#{1}
+    </update>
+
+    <update id="updateUserInfo" parameterType="UserEntity">
+        UPDATE user SET nickName=#{nickName} WHERE userId=#{userId}
+    </update>
+
+    <select id="getUserInfoById" parameterType="String" resultType="UserEntity">
+        SELECT * FROM user WHERE userId=#{0}
+    </select>
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.bbs.database.dao.CategoryDao">
+    <insert id="addNewCategory" keyProperty="categoryId" useGeneratedKeys="true" parameterType="CategoryEntity">
+        INSERT INTO categories VALUES (null, #{name}, #{description})
+    </insert>
+
+    <select id="getAllCategories" resultType="CategoryEntity">
+        SELECT * FROM categories
+    </select>
+
+    <update id="updateCategoryInfo" parameterType="CategoryEntity">
+        UPDATE categories SET categories.name=#{name}, description=#{description}
+        WHERE categoryId=#{categoryId}
+    </update>
+
+    <delete id="deleteCategory" parameterType="Integer">
+        DELETE FROM categories WHERE categoryId=#{0}
+    </delete>
+
+    <select id="getCategoryById" parameterType="Integer" resultType="CategoryEntity">
+        SELECT * FROM categories WHERE categoryId=#{0}
+    </select>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.bbs.database.dao.InformDao">
+    <insert id="generateNewInform" parameterType="InformEntity" useGeneratedKeys="true" keyProperty="informId">
+        INSERT INTO inform VALUES (null, #{informUserId},#{content},#{replyId},#{informDate},#{hasRead})
+    </insert>
+
+    <update id="updateInformReadStatus" parameterType="Integer">
+        UPDATE inform SET hasRead=1 WHERE informId=#{0}
+    </update>
+
+    <select id="getInformsByUserId" parameterType="String" resultType="InformEntity">
+        SELECT * FROM inform WHERE informUserId=#{0} ORDER BY (CONVERT(informDate, DECIMAL)) DESC
+    </select>
+
+    <delete id="deleteInforms" parameterType="String">
+        DELETE FROM inform WHERE informUserId=#{0}
+    </delete>
+</mapper>

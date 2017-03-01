@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.bbs.database.dao.TopicDao">
+    <insert id="postNewTopic" useGeneratedKeys="true" keyProperty="topicId" parameterType="TopicEntity">
+        INSERT INTO topic VALUES (null, #{postmanId},#{postDate},#{categoryId},#{title}
+        ,#{content},#{lastReplyTime},#{lastReplyId},#{comments},#{browseCount})
+    </insert>
+
+    <select id="getTopicsByUserId" parameterType="String" resultType="TopicEntity">
+        SELECT * FROM topic WHERE postmanId=#{0} ORDER BY (CONVERT(topic.lastReplyTime, DECIMAL)) DESC
+    </select>
+
+    <select id="getRecentReplyTopics" resultType="TopicEntity">
+        SELECT * FROM topic WHERE topicId NOT IN (SELECT topicId FROM sticky)
+        ORDER BY (CONVERT(topic.lastReplyTime, DECIMAL)) DESC
+    </select>
+
+    <select id="getTopicById" parameterType="Integer" resultType="TopicEntity">
+        SELECT * FROM topic WHERE topicId=#{0}
+    </select>
+
+    <select id="searchTopicsByKeyWords" parameterType="String" resultType="TopicEntity">
+        SELECT * FROM topic WHERE title LIKE CONCAT('%',#{0},'%') OR title LIKE CONCAT('%',#{0}) OR
+        title LIKE CONCAT(#{0},'%') ORDER BY (CONVERT(topic.lastReplyTime, DECIMAL)) DESC
+    </select>
+
+    <delete id="deleteTopic" parameterType="Integer">
+        DELETE FROM topic WHERE topicId=#{0}
+    </delete>
+
+    <update id="updateBrowseCount" parameterType="Integer">
+        UPDATE topic SET browseCount=#{1} WHERE topicId=#{0}
+    </update>
+
+    <update id="updateComments">
+        UPDATE topic SET lastReplyTime=#{2},lastReplyId=#{1},comments=#{3} WHERE topicId=#{0}
+    </update>
+
+    <select id="getTopicsBelongToCategory" parameterType="Integer" resultType="TopicEntity">
+        SELECT * FROM topic WHERE categoryId=#{0} ORDER BY (CONVERT(topic.lastReplyTime, DECIMAL)) DESC
+    </select>
+</mapper>

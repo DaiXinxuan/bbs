@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.bbs.database.dao.AdminDao">
+    <select id="verifyAdmin" parameterType="AdminEntity" resultType="AdminEntity">
+        SELECT * FROM admin WHERE adminName=#{adminName} AND password=#{password}
+    </select>
+
+    <update id="changePassword" parameterType="String">
+        UPDATE admin SET password=#{1} WHERE adminName=#{0}
+    </update>
+
+</mapper>

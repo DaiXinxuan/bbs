@@ -1,0 +1,20 @@
+<?xml version   ="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.bbs.database.dao.ReplyDao">
+    <insert id="postNewReply" parameterType="ReplyEntity" useGeneratedKeys="true" keyProperty="replyId">
+        INSERT INTO reply VALUES (null, #{replymanId}, #{topicId},#{content},#{replyDate},
+        #{quoteReplyId},#{quoteUserId})
+    </insert>
+
+    <select id="getReplyInfoById" parameterType="Integer" resultType="ReplyEntity">
+        SELECT * FROM reply WHERE replyId=#{0}
+    </select>
+    
+    <select id="getUserReplys" parameterType="String" resultType="ReplyEntity">
+        SELECT * FROM reply WHERE replymanId=#{0} ORDER BY (CONVERT(replyDate,DECIMAL)) DESC
+    </select>
+
+    <select id="getTopicReplys" parameterType="Integer" resultType="ReplyEntity">
+        SELECT * FROM reply WHERE topicId=#{0} ORDER BY (CONVERT(replyDate,DECIMAL))
+    </select>
+</mapper>
