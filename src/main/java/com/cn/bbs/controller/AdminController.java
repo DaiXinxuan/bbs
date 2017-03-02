@@ -70,6 +70,12 @@ public class AdminController {
         return resultJson;
     }
 
+    /**
+     * 管理员更改密码
+     * @param passwordParam
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
     @ResponseBody
     public ResultJson changePassword(@RequestBody PasswordParam passwordParam,

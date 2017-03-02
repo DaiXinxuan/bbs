@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -179,13 +180,14 @@ public class ReplyController {
             resultJson.setErrorMsg("传入页数不合法");
             return resultJson;
         }
-
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
         ArrayList<ReplyEntity> replyEntities = (ArrayList<ReplyEntity>)
                 replyService.getUserReplys(userId);
         List<ReplyEntity> replyEntityList;
         ArrayList<HistoryReplyResult> historyReplyResults = new ArrayList<HistoryReplyResult>();
         if (replyEntities!=null && replyEntities.size()>0) {
             int amount = replyEntities.size();
+            resultMap.put("amount", amount);
             if (index*20 < amount) {
                 int from = (index-1)*20;
                 int to = 20*index;
@@ -215,6 +217,7 @@ public class ReplyController {
                 }
                 historyReplyResults.add(historyReplyResult);
             }
+            resultMap.put("replyList",historyReplyResults);
         }
 
         resultJson.setStatus(true);

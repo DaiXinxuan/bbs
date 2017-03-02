@@ -1,11 +1,9 @@
 package com.cn.bbs.controller;
 
-import com.cn.bbs.database.model.InformEntity;
 import com.cn.bbs.database.model.UserEntity;
 import com.cn.bbs.exception.PictureUploadException;
 import com.cn.bbs.param.LoginParam;
 import com.cn.bbs.result.ResultJson;
-import com.cn.bbs.servie.InformService;
 import com.cn.bbs.servie.UserService;
 import com.cn.bbs.util.PictureSaveUtil;
 import org.apache.commons.logging.Log;
@@ -16,9 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Map;
 
 /**
