@@ -221,7 +221,7 @@ public class ReplyController {
         }
 
         resultJson.setStatus(true);
-        resultJson.setResultObj(historyReplyResults);
+        resultJson.setResultObj(resultMap);
         return resultJson;
     }
 }
